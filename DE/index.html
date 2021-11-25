@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cookie Denyer</title>
+</head>
+<body>
+
+	<div class="progress-bar hide">
+		<h1 class="progress"></h1>
+		<h1 class="penalty"></h1>
+		<h1 class="timer"></h1>
+	</div>
+	<div class="wrapper">
+		<div class="welcome-message">
+			<h1>Cookie Denyer</h1>
+			<div>
+				In diesem Spiel sollst du <b>alle</b> Cookies so schnell wie möglich deaktivieren. Vergisst du etwas oder verklickst dich, bekommst du 5 Strafsekunden.<br><br>
+				Drücke auf "START" um das Spiel zu beginnen.<br><br>
+				<button class="start">START</button>
+				<h2>Hinweis</h2>
+				Unabhängig vom Namen verwendet diese Spiel keinerlei Cookies. Viel Spaß.
+			</div>
+		</div>
+
+		<div class="countdown"></div>
+	</div>
+	<div class="footer">
+		Copyright 2021 JoBwo - <a href="https://github.com/JoBwo/cookie-denyer">GitHub</a> - <a href="../index.html">Englisch Version</a>
+	</div>
+
+	<div class="game-over hide"></div>
+	<div class="win hide"></div>
+
+	<!-- Here are all Cookie Windows. Each one is a bit different. -->
+
+	<!-- Window 1 -->
+	<div class="cookie hide" id="cookie-1">
+		<div class="text">
+			<h1>Diese Webseite verwendet Cookies</h1>
+			Diese Webseite verwendet Cookies, um deine persönlichen Informationen zu verkaufen.<br>
+			Bist du damit einverstanden?
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="nextCookie()" style="background-color: green; padding: 5px 10px; color: white;">Cookies Ablehnen</button>
+			<button class="cookie-btn" onclick="gameOver()" style="color: green;">Cookies Akzeptieren</button>
+		</div>
+	</div>
+
+	<!-- Window 2 -->
+	<div class="cookie hide" id="cookie-2">
+		<div class="text">
+			<h1>Diese Webseite verwendet Cookies</h1>
+			Diese Webseite verwendet Cookies, um deine persönlichen Informationen zu verkaufen.<br>
+			Bist du damit einverstanden?
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Cookies akzeptieren</button>
+			<button class="cookie-btn" onclick="nextCookie()" style="color: green;">Cookies ablehnen</button>
+		</div>
+	</div>
+
+	<!-- Window 3 -->
+	<div class="cookie hide" id="cookie-3">
+		<div class="text">
+			<h1>Diese Webseite verwendet Cookies</h1>
+			Diese Webseite verwendet Cookies, um deine persönlichen Informationen zu verkaufen.<br>
+			Wenn du dies ändern möchtest, dann klicke auf erweiterte Optionen.
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Cookies akzeptieren</button>
+			<button class="cookie-btn" onclick="c2showMore()" style="color: green;">Erweiterte Optionen</button>
+		</div>
+
+		<div class="text hide">
+			Sage uns, welche Cookies wir sammeln dürfen:<br>
+			<input type="checkbox" checked class="c2-options"> Tracking Cookies<br>
+			<input type="checkbox" checked class="c2-options"> Werbe Cookies<br>
+			<input type="checkbox" checked class="c2-options"> Passwort Cookies<br>
+		</div>
+		<div class="options hide">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Verwerfen</button>
+			<button class="cookie-btn" onclick="c2checkOptions()" style="color: green;">Speichern</button>
+		</div>
+	</div>
+
+	<!-- Window 4 -->
+	<div class="cookie hide" id="cookie-4">
+		<div class="text">
+			<h1>Diese Webseite verwendet Cookies</h1>
+			Diese Webseite verwendet Cookies, um deine persönlichen Informationen zu verkaufen.<br>
+			Wenn du dies ändern möchtest, dann klicke auf erweiterte Optionen.
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Cookies akzeptieren</button>
+			<button class="cookie-btn" onclick="c3showMore()" style="color: green;">Erweiterte Optionen</button>
+		</div>
+
+		<div class="text hide" style="overflow-y: auto; height: 100px;">
+			Sage uns, welche Cookies wir sammeln dürfen:<br>
+			<input type="checkbox" checked class="c3-options"> Tracking Cookies<br>
+			<input type="checkbox" checked class="c3-options"> Werbe Cookies<br>
+			<div class="rickroll"><img src="./image.gif" width="250px"></div>
+			Nutzungsdaten ändern?<br>
+			<input type="text" value="Ja" class="c3-input"><br>
+			Gib NEIN!1! zum ablehnen ein.
+		</div>
+		<div class="options hide">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Verwerfen</button>
+			<button class="cookie-btn" onclick="c3checkOptions()" style="color: green;">Speichern</button>
+		</div>
+	</div>
+
+	<!-- Window 5 -->
+	<div class="cookie hide" id="cookie-5">
+		<div class="text">
+			<h1>Diese Webseite benutzt Cookies</h1>
+			Diese Webseite benutzt Cookies, um deine persönlichen Informationen zu verkaufen.<br>
+			Vielleicht kannst du Ablehnen anklicken.
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Cookies akzeptieren</button>
+			<button class="cookie-btn" onclick="nextCookie()" style="color: #eee; font-size: 4px; padding: 0; margin: 0;">Ablehnen</button>
+		</div>
+	</div>
+
+	<!-- Window 6 -->
+	<div class="cookie hide" id="cookie-6">
+		<div class="text">
+			<h1>Willst du keine Cookies?</h1>
+			Löse diese Gleichung, um Cookies zu deaktivieren.<br>
+			<span class="c5-equation"></span><br>
+			<input type="text" class="c5-solution">
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="c5checkSolution()" style="background-color: green; padding: 5px 10px; color: white;">Prüfen</button>
+		</div>
+	</div>
+
+	<!-- Window 7 -->
+	<div class="cookie hide flip" id="cookie-7">
+		<div class="text">
+			<h1>Viel Spaß beim Lesen</h1>
+			Naja, wir wollen wirklich, dass du Cookies akzeptierst. Viel Spaß beim Lesen.
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Alle Cookies akzeptieren</button>
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Verkaufe deine Seele</button>
+			<button class="cookie-btn" onclick="nextCookie()" style="background-color: green; padding: 5px 10px; color: white;">Cookies ablehnen</button>
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Manche Cookies ablehnen</button>
+		</div>
+	</div>
+
+	<!-- Window 8 -->
+	<div class="cookie hide" id="cookie-8">
+		<div class="text">
+			<h1>Cookies ablehnen?</h1>
+			Dieses Mal ist es ganz leicht. Klicke einfach Ablehnen an.
+		</div>
+		<div class="options">
+			<button class="cookie-btn c7-btn" onclick="c7endRandomness()" style="background-color: green; padding: 5px 10px; color: white;">Ablehnen</button>
+		</div>
+	</div>
+
+	<!-- Window 9 -->
+	<div class="cookie hide" id="cookie-9">
+		<div class="text">
+			<h1>Diese Webseite nutzt Cookies</h1>
+			Bitte wähle die gewünschten Optionen entsprechend deiner Wünsche aus.<br>
+			Hinweis: Aus Sicherheitsgründen wird die Auswahl alle 4 Sekunden zurückgesetzt.<br>
+			<input type="checkbox" checked class="c8-options"> Tracking Cookies ablehnen<br>
+			<input type="checkbox" checked class="c8-options"> Werbe Cookies ablehnen<br>
+			<input type="checkbox" checked class="c8-options"> Meine Änderungen verwerfen<br>
+			<input type="checkbox" checked class="c8-options"> Spionage Cookies deaktivieren<br>
+			<input type="checkbox" checked class="c8-options"> Passwort Cookies deaktivieren<br>
+			<input type="checkbox" checked class="c8-options"> Scammer Cookies deaktivieren<br>
+			<input type="checkbox" checked class="c8-options"> Meine Entscheidung ignorieren<br>
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="addPenalty()" style="background-color: green; padding: 5px 10px; color: white;">Verwerfen</button>
+			<button class="cookie-btn" onclick="c8checkOptions()" style="color: green;">Speichern</button>
+		</div>
+	</div>
+
+	<!-- Window 10 -->
+	<div class="cookie hide" id="cookie-10">
+		<div class="text">
+			<h1>Diese Webseite verwendet Cookies.</h1>
+			Diese Webseite verwendet Cookies um deine persönlichen Daten zu verkaufen.<br>
+			Willst du dem<span style="font-size: 5px;"> nicht </span>zustimmen? 
+		</div>
+		<div class="options">
+			<button class="cookie-btn" onclick="nextCookie()" style="color: green;">Nein</button>
+			<button class="cookie-btn" onclick="gameOver()" style="color: green;">Ja</button>
+		</div>
+	</div>
+
+</body>
+</html>
+<script src="./index.js"></script>
+<style>
+	body, html {
+		font-family: "Comic Sans MS", "Comic Sans", cursive;
+	}
+
+	.progress-bar {
+		position: absolute;
+		top:  0px;
+		left: 0px;
+		width: 100%;
+		height: 50px;
+	}
+
+	.progress-bar h1{
+		display:  inline-block;
+		margin-right: 40px;
+	}
+
+	.wrapper {
+		position:  absolute;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height:  100%;
+
+		min-width: 800px;
+		min-height: 600px;
+		overflow:  auto;
+		z-index:  -1;
+	}
+
+	.welcome-message {
+		margin:  auto;
+		margin-top:  20vh;
+		width: 550px;
+		text-align: center;
+		background-color: white;
+		border-radius:  5px;
+
+		padding:  12px 8px;
+	}
+
+	h1{
+		margin-top: 0;
+	}
+
+	.game-over {
+		background-color: white;
+		width:  200px;
+		margin:  auto;
+		margin-top: 20vh;
+		padding: 12px 8px;
+		color:  red;
+	}
+
+	.win {
+		background-color: white;
+		width:  200px;
+		margin:  auto;
+		margin-top: 20vh;
+		padding: 12px 8px;
+		text-align:  center;
+	}
+
+	.start, .win button {
+		font-size: 20px;
+		background-color:  darkgray;
+		color:  white;
+		padding:  6px 3px;
+		border-radius:  3px;
+	}
+
+	.fade {
+		animation: fadeOut 1s;
+    	animation-fill-mode: forwards;
+	}
+
+	@keyframes fadeOut {
+	    0% { opacity: 1;}
+	    100% { opacity: 0; display:  none;}
+	}
+
+	.countdown {
+		width: 50px;
+		font-size: 45px;
+		margin:  auto;
+		margin-top: 20vh;
+	}
+
+	.cookie {
+		position:  absolute;
+		z-index:  100;
+		background-color:  white;
+		padding: 10px 12px;
+		border: 1px solid lightgray;
+		border-radius: 5px;
+	}
+
+	.cookie .options {
+		margin-top:  20px;
+	}
+
+	.cookie-btn {
+		border:  none;
+		background-color: white;
+	}
+
+	.flip {
+		-moz-transform: scale(-1, 1);
+		-webkit-transform: scale(-1, 1);
+		-o-transform: scale(-1, 1);
+		-ms-transform: scale(-1, 1);
+		transform: scale(-1, 1);
+	}
+
+	.c7-btn {
+		position: relative;
+	}
+
+	.footer {
+		position: absolute;
+		width:  400px;
+		left:  calc(50% - 200px);
+		bottom: 10px;
+		z-index: 110;
+		text-align: center;
+	}
+
+	.footer a {
+		color:  black;
+	}
+
+	.footer a:visited {
+		color:  black;
+	}
+
+	.hide {
+		display:  none;
+	}
+</style>
