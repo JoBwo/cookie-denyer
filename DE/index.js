@@ -8,6 +8,7 @@ var penalty = document.querySelector(".penalty");
 var timerel = document.querySelector(".timer");
 var footer = document.querySelector(".footer");
 var win = document.querySelector(".win");
+var error = document.querySelector(".error");
 
 document.querySelector(".start").addEventListener("click", () => startCountdown())
 
@@ -18,6 +19,7 @@ var penalties = -1;
 var doTimer = true;
 
 var timerInterval;
+var errorTimeout;
 
 let cookieWindows = [
 	document.getElementById("cookie-1"),
@@ -192,6 +194,14 @@ function addPenalty(){
 
 	if(penalties > 0){
 		timer += 500;
+	}
+
+	if(errorTimeout != null){
+		clearTimeout(errorTimeout);
+	}
+	if(penalties > 0){
+		error.classList.remove("hide");
+		errorTimeout = setTimeout(() => error.classList.add("hide"), 2000);
 	}
 }
 

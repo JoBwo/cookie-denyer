@@ -97,7 +97,7 @@
 			<button class="cookie-btn" onclick="c3showMore()" style="color: green;">Manage Options</button>
 		</div>
 
-		<div class="text hide" style="overflow-y: auto; height: 100px;">
+		<div class="text hide" style="overflow-y: scroll; height: 100px;">
 			Select, which cookies we are allowed to collect:<br>
 			<input type="checkbox" checked class="c3-options"> Tracking Cookies<br>
 			<input type="checkbox" checked class="c3-options"> Advertisement Cookies<br>
@@ -195,6 +195,8 @@
 			<button class="cookie-btn" onclick="gameOver()" style="color: green;">Yes</button>
 		</div>
 	</div>
+
+	<div class="error hide">You did not deny all Cookies.</div>
 
 </body>
 </html>
@@ -337,5 +339,16 @@
 
 	.hide {
 		display:  none;
+	}
+
+	.error {
+		color:  red;
+		background: white;
+		padding: 8px 10px;
+		border:  1px solid gray;
+		position:  absolute;
+		left: 10px;
+		bottom:  10px;
+		width:  200px;
 	}
 </style>
